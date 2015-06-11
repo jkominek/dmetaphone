@@ -1,0 +1,24 @@
+
+-- Adjust this setting to control where the objects get created.
+SET search_path = public;
+
+CREATE OR REPLACE FUNCTION ddmetaphonedict_init(internal)
+        RETURNS internal
+        AS 'MODULE_PATHNAME'
+        LANGUAGE C STRICT;
+
+CREATE OR REPLACE FUNCTION ddmetaphonedict_lexize(internal, internal, internal, internal)
+        RETURNS internal
+        AS 'MODULE_PATHNAME'
+        LANGUAGE C STRICT;
+
+CREATE TEXT SEARCH TEMPLATE dmetaphonedict_template (
+        LEXIZE = ddmetaphonedict_lexize,
+	INIT   = ddmetaphonedict_init
+);
+
+CREATE TEXT SEARCH DICTIONARY dmetaphonedict (
+	TEMPLATE = dmetaphonedict_template
+);
+
+COMMENT ON TEXT SEARCH DICTIONARY dmetaphonedict IS 'dictionary for names, using dmetaphone';

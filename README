@@ -1,0 +1,8 @@
+Tested with PostgreSQL 9.3.7, 9.4.3
+
+got to put this into the contrib dir of a postgresql build. run configure,
+then can run make in this dir. copy .so into libdir or something.
+run the resulting .sql script
+
+create text search configuration names (copy=simple);
+alter text search configuration names alter mapping for asciiword, asciihword, hword with dmetaphonedict;
