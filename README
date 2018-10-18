@@ -1,8 +1,8 @@
-Tested with PostgreSQL 9.3.7, 9.4.3
+Tested with PostgreSQL 9.3.7, 9.4.3, 11
 
-got to put this into the contrib dir of a postgresql build. run configure,
-then can run make in this dir. copy .so into libdir or something.
-run the resulting .sql script
+* make USE_PGXS=1
+* sudo make USE_PGXS=1 install
+* run the resulting .sql script against appropriate database
 
 create text search configuration names (copy=simple);
 alter text search configuration names alter mapping for asciiword, asciihword, hword with dmetaphonedict;
